@@ -1,2 +1,3 @@
 # Analisador-Lexico-Sintatico
-Analisador léxico e sintático desenvolvido para a disciplina de compiladores.
+Analisador léxico e sintático desenvolvido para a disciplina de compiladores,
+utilizando as ferramentas Flex e Bison.
