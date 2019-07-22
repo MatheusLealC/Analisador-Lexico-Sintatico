@@ -51,14 +51,11 @@ char *string;
 ">"	   {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<GREATER_THAN>");chars+=strlen(yytext);token++;}
 "<="       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<LESS_EQUAL>");chars+=strlen(yytext);token++;}
 ">="       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<GREATER_EQUAL>");chars+=strlen(yytext);token++;}
-">>"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<SHIFT_ESQ>");chars+=strlen(yytext);token++;}
-"<<"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<SHIFT_DIR>");chars+=strlen(yytext);token++;}
 "<-"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_ATRIB>");chars+=strlen(yytext);token++;}
 "+="       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_ADD_ATRIB>");chars+=strlen(yytext);token++;}
 "-="       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_MINUS_ATRIB>");chars+=strlen(yytext);token++;}
 ";"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<SEMICOLON>");chars+=strlen(yytext);token++;}
 ","        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<COMMA>");chars+=strlen(yytext);token++;}
-":"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<COLON>");chars+=strlen(yytext);token++;}
 "("        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<PARENT_ESQ>");chars+=strlen(yytext);token++;}
 ")"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<PARENT_DIR>");chars+=strlen(yytext);token++;}
 "{"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<CHAVE_ESQ>");chars+=strlen(yytext);token++;}
@@ -92,14 +89,14 @@ char *string;
      }
 
 <IN_COMMENT>{
-     <<EOF>>   { if(pula_linha!=0) printf("\n"); printf("error:lexical:%d:%d: unterminated comment",lines2,chars2); pula_linha++; }BEGIN(INITIAL);
+     <<EOF>>   { if(pula_linha!=0) printf("\n"); printf("lexical error:%d:%d: comentário não terminado!",lines2,chars2); pula_linha++; }BEGIN(INITIAL);
      "*/"      { chars+=2; } BEGIN(INITIAL);
      [^*\n]+   { chars+= strlen(yytext);}
      "*"       { chars+= strlen(yytext);}
      \n        yylineno++;lines++;
      }
 \/\/([^\n])*                 { chars += strlen(yytext); }
-.       {if(pula_linha!=0) printf("\n"); printf("error:lexical:%d:%d: %s",lines,chars,yytext); chars+= strlen(yytext); pula_linha++; }
+.       {if(pula_linha!=0) printf("\n"); printf("lexical error:%d:%d: operador <%s> não existe!",lines,chars,yytext); chars+= strlen(yytext); pula_linha++; }
 
 %%
 
