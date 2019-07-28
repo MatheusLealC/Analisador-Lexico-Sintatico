@@ -36,12 +36,10 @@ char *string;
 "*"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_MULT>");chars+=strlen(yytext);token++;}
 "/"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_DIV>");chars+=strlen(yytext);token++;}
 "%"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_RESTO>");chars+=strlen(yytext);token++;}
-"++"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_INC>");chars+=strlen(yytext);token++;}
-"--"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_DEC>");chars+=strlen(yytext);token++;}
+"++"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_INCR>");chars+=strlen(yytext);token++;}
+"--"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_DECR>");chars+=strlen(yytext);token++;}
 "&"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_AND>");chars+=strlen(yytext);token++;}
 "|"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_OR>");chars+=strlen(yytext);token++;}
-"~"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_NOT>");chars+=strlen(yytext);token++;}
-"^"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<OP_XOR>");chars+=strlen(yytext);token++;}
 "!"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<NOT>");chars+=strlen(yytext);token++;}
 "&&"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<LOGICAL_AND>");chars+=strlen(yytext);token++;}
 "||"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<LOGICAL_OR>");chars+=strlen(yytext);token++;}
@@ -62,9 +60,6 @@ char *string;
 "}"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<CHAVE_DIR>");chars+=strlen(yytext);token++;}
 "["        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<COLCHETE_ESQ>");chars+=strlen(yytext);token++;}
 "]"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<COLCHETE_DIR>");chars+=strlen(yytext);token++;}
-"?"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<COND_TERN>");chars+=strlen(yytext);token++;}
-"#"        {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<NUMBER_SIGN>");chars+=strlen(yytext);token++;}
-"->"       {if(pula_linha != 0){printf("\n");}pula_linha=1;printf("<POINTER>");chars+=strlen(yytext);token++;}
 
 
 [0-9]+              { if(pula_linha!=0) printf("\n"); printf("<NUM_INT, %s>", yytext); chars+= strlen(yytext); pula_linha++; }
