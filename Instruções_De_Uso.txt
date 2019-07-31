@@ -1,0 +1,78 @@
+########################################### INSTRUÇÕES ############################################
+
+    Neste arquivo são demonstradas todas as instruções necessárias para uso correto dos
+    analisadores Léxico e Sintático.
+
+    DESCRIÇÃO DO REPOSITÓRIO
+
+    No repositório estão contidos inicialmente 3 (três) arquivos,
+    o primeiro deles é o arquivo léxico.l no qual contém toda a estrutura, expressões regulares
+    e demais códigos do analisador léxico demonstrado na primeira apresentação. Além do arquivo
+    lexico.l o repositório contém ainda mais dois arquivos, calc.l e calc.y, estes dois últimos
+    fazem parte do analisador sintático.
+
+    EXECUÇÃO DO ANALISADOR LÉXICO
+
+    Para correta execução do arquivo lexico.l é necessário, primeiramente, ter o programa Flex
+    instalado, é ele quem vai gerar o arquivo .c onde poderá ser executado o analisador léxico,
+    ele está disponível para Linux, Windows e Mac.
+
+    Para gerar o arquivo .c a partir do arquivov léxico.l é necessário rodar a seguinte linha de
+    comando no terminal ou prompt de comando:
+
+        $-> flex lexico.l
+
+    A saída para o seguinte comando será um arquivo .c chamado lex.yy.c que será colocado no mesmo
+    diretório junto aos demais arquivos. Em seguida para compilar o arquivo .c a seguinte linha de
+    comando tem de ser executada:
+
+        $-> gcc lex.yy.c -o progObjeto -lfl
+
+    Após a execução do comando um programa objeto será gerado, neste caso, o programa objeto gerado
+    terá o nome de progObjeto, para executar o programa basta que execute-se o próximo e último
+    comando no terminal:
+
+        $-> ./progObjeto
+
+    Desta forma, o programa será executado e ficará aguardando o usuário digitar algum trecho
+    de código, vale lembrar que o código tem que ser executado somente em uma linha, por questões
+    de implementação mesmo, após a implementação do trecho de código, para a exibição da análise
+    dos tokens, basta que se aperte a tecla ENTER e será gerada a lista de tokens de acordo com
+    a expressão ou trecho de código informado. O programa continuará em execução aguardando novos
+    trechos de códigos serem digitados caso necessário. Para encerrar a aplicação basta pressionar
+    as teclas CTRL + D.
+
+
+    EXECUÇÃO DO ANALISADOR SINTÁTICO
+
+    Para execução do analisador sintático e necessário além das etapas anteriores descritas
+    realizar a execução de outro programa, o programa é o yacc, também está disponível para Linux,
+    Windows e Mac. O yacc será responsável por compilar o arquivo .l que estiver dentro do 
+    diretório. Para compilação deste arquivo, geração do arquivo .c e compilação do mesmo será 
+    preciso digitar as seguintes linhas de comando:
+
+    1º Compilação do arquivo .y e geração do arquivo .c
+
+        $-> yacc -d nome_do_arquivo.y
+
+    2º Compilação dos arquivos do analisador léxico e sintático
+
+        $-> gcc lex.yy.c y.tab.c -o progObjeto
+
+    Após feito isso e executado o programa objeto, o programa seguirá o mesmo passo mencionado
+    em etapas anteriores.
+
+    Nota: Neste último passo foram compilados dois aquivos, além do arquivo, lex.yy.c também
+          foi incluso o arquivo y.tab.c que é o código do analisador sintático
+
+    RESULTADO APÓS A EXECUÇÃO DE TODOS OS PASSOS
+
+    Após a execução de todos os passos descritos acima, além dos 3 (três) arquivos iniciais
+    já mencionados, a execução final resultará em mais 4 (quatro) arquivos, sendo dois arquivos
+    com extensão .c (lex.yy.c e y.tab.c) e dois arquivos objetos executáveis com o nome da 
+    preferência do usuário.
+
+
+    Observação final: Todos os passos descritos neste documento foram executados em ambiente Linux
+                      a execução nos demais ambientes não difere muito das aqui presentes, mas cabe
+                      ao usuário verificar a existência de possíveis diferenças em alguns comandos.
